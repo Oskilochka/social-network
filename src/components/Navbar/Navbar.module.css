@@ -1,0 +1,53 @@
+.navbar {
+    background-color: #3761b6;
+    border-radius: 15px;
+    padding: 30px 0px 30px 50px;
+}
+.item {
+    margin: 20px 0px;
+    font-size: 20px;
+    width: 70%;
+    font-weight: bold;
+}
+
+.img {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.wrap {
+    margin-left: 25%;
+    margin-right: 20%;
+}
+
+.friends {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0px;
+}
+.friendsWrap {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.friend {
+   margin: 0px 7px;
+    font-size: 13px;
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.item a:hover {
+    color:  #02e3b0 ;
+}
+
+.item a.activeLink {
+    color:#aeff00 ;
+}

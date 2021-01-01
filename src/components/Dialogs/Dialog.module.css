@@ -1,0 +1,87 @@
+.content {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    width: 90%;
+    margin-left: 3%;
+    border-radius: 25px;
+}
+.dialog {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+.dialog:hover {
+    color: #aeff00;
+}
+
+.dialogsItems {
+    background-color:  #19376c ;
+    border-radius: 25px 0px 0px 25px;
+    border: 3px solid #19376c;
+    border-right: none;
+}
+
+.messagesItems {
+    padding: 10px;
+    background-color:#ccdefe;
+    border-radius: 0px 25px 25px 0px;
+    border: 3px solid #19376c;
+    border-left: none;
+    display: grid;
+    grid-template-rows: 10fr 2fr;
+}
+
+.activeItem {
+    background-color: #ccdefe;
+    border-radius: 25px 0px 0px 25px;
+    color: black;
+}
+.activeItem:hover {
+    color: #19376c;
+}
+
+.img {
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.message {
+    padding: 5px;
+}
+
+.newMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textarea {
+    border-radius: 25px;
+    resize: none;
+    padding: 10px 25px;
+    font-size: 18px;
+    width: 70%;
+    height: 23px;
+    border: 2px solid #19376c;
+
+}
+
+.textarea:focus {
+    border: 2px solid darkgreen;
+}
+.send {
+    border-radius: 25px;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    border: 2px solid #19376c;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+
