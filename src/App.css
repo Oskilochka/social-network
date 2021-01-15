@@ -5,6 +5,7 @@
 .appWrap {
   background-color: lavender;
   height: 100vh;
+
 }
 .header {
   display: flex;
@@ -13,6 +14,7 @@
 .body {
   display: grid;
   padding-top: 50px;
+  margin: 0% 20%;
   grid-template-columns: 2fr 10fr ;
 }
 

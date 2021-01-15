@@ -1,0 +1,13 @@
+.wrap {
+    margin-left: 3%;
+}
+
+.themeBtn {
+    padding: 7px 20px;
+    border: 1px solid #19376c;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(12, 80, 144, 0.6);
+    color: white;
+    font-weight: bolder;
+}

@@ -5,7 +5,6 @@ const Message = (props) => {
     return (
         <div className={value.message}>
             {props.message}
-
         </div>
     )
 }

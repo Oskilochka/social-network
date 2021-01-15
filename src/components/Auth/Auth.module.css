@@ -1,0 +1,27 @@
+.wrap {
+
+    margin-left: 3%;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 10px 0px;
+    padding: 2px 5px;
+    font-size: 18px;
+    width: 50%;
+    height: 30px;
+}
+
+.submitBtn {
+    border-radius: 20px;
+    border: #19376c 1px solid;
+    padding: 5px 5px;
+    width: 200px;
+    cursor: pointer;
+
+}

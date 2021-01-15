@@ -1,0 +1,22 @@
+.addPostBtn {
+    padding: 7px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+    border: 2px solid #19376c;
+    margin-top: 20px;
+}
+
+.postInput {
+    border-radius: 25px;
+    resize: none;
+    padding: 10px 25px;
+    font-size: 18px;
+    height: 80px;
+    border: 2px solid #19376c;
+}
+
+.postInput:focus {
+    border: 2px solid darkgreen;
+}
+

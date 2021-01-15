@@ -44,9 +44,11 @@
     color: #19376c;
 }
 
-.img {
+.friendPhoto {
     width: 60px;
+    height: 60px;
     border-radius: 50%;
+    border: 3px solid #19376c;
     margin-right: 20px;
 }
 

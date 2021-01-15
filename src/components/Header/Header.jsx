@@ -1,12 +1,26 @@
 import React from 'react'
-import value from "./Header.module.css";
+import styles from "./Header.module.css";
+import headerIcon from '../../assets/img/headerIcon.png'
+import loginIcon from '../../assets/img/loginIcon.png'
+import {NavLink} from "react-router-dom";
 
-
-const Header = () => {
+const Header = (props) => {
     return (
-        <header className={value.header}>
-            <h1>Social Network</h1>
-        </header>
+        <div className={styles.wrap}>
+            <div className={styles.header}>
+                <img className={styles.headerIcon} src={headerIcon} />
+                <h1 className={styles.nameSite}>Racoon Social Network</h1>
+            </div>
+            <div className={styles.logWrap}>
+                { props.isAuth ? <h5> {props.login} </h5>
+                :  <NavLink to={'/login'}   className={styles.login}>
+                        <img className={styles.loginIcon} src={loginIcon} />
+                        <span className={styles.loginBtn} >Login</span>
+                    </NavLink>
+                }
+
+            </div>
+        </div>
     );
 }
 

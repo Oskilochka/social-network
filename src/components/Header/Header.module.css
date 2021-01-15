@@ -1,9 +1,50 @@
-.header {
+.wrap {
     background-color: #3761b6;
     border-radius: 0px 0px 20px 20px;
-    height: 50px;
-    width: 95%;
-    text-align: center;
-    padding: 15px 0px;
+    height: 80px;
+    width: 60%;
+    padding: 5px 0px;
     color: white;
+    display: grid;
+    grid-template-columns: 10fr 2fr;
+}
+
+.header {
+    display: flex;
+    margin-left: 4%;
+    display: flex;
+    align-items: center;
+}
+
+.logWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerIcon {
+    width: 90px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.loginIcon {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    margin-right: 5px;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: black;
+    border-radius: 20px;
+    border: #19376c 2px solid;
+    font-weight: bold;
+    background-color: #ccdefe;
 }
