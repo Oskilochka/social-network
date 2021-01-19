@@ -16,12 +16,12 @@ const ProfileInfo = (props) => {
                 <img className={styles.img} src={props.userProfile.photos.large}/>
                 <div>
                     <h3> {props.userProfile.fullName} </h3>
-                    <ProfileStatus status='helloos' />
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
 
                     <h4> {props.userProfile.lookingForAJobDescription} </h4>
 
-                    <h5>Web site: <a
-                        href={props.userProfile.contacts.github}> github </a></h5>
+                   {/* <h5>Web site: <a
+                        href={props.userProfile.contacts.github}> github </a></h5>*/}
                 </div>
             </div>
         </div>

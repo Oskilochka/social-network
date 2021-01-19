@@ -7,7 +7,7 @@ let Users = (props) => {
 
     /* let pagesCount = Math.ceil(props.totalUsersCount / props.count);*/
     let pages = [];
-    for (let i = 125; i <= 135; i++) {
+    for (let i = 136; i <= 150; i++) {
         pages.push(i);
     }
 

@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 /*type MessageType = {
@@ -18,7 +17,6 @@ type InitialStateType = {
     dialogs: Array<Dialog>
 }*/
 
-type InitialStateType = typeof initialState;
 
 let initialState = {
     messages:  [
@@ -26,7 +24,6 @@ let initialState = {
         {id: 2, message: 'Goodbye'},
         {id: 3, message: 'Have a nice day!'}
     ],
-    newMessageBody: '',
     dialogs: [
         {id: 1, name: 'Julia'},
         {id: 2, name: 'Vadim'},
@@ -36,32 +33,25 @@ let initialState = {
 
 const dialogsReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
+
         case SEND_MESSAGE:
+            let body = action.newMessageBody
             return {
                 ...state,
-                newMessageBody: '',
-                messages: [...state.messages, {id: 6, message: state.newMessageBody}]
+                messages: [...state.messages, {id: 6, message: body }]
             }
         default:
             return state;
     }
 }
 type SendMessageCreatorType = {
-    type: typeof SEND_MESSAGE
+    type: typeof SEND_MESSAGE,
+    newMessageBody: string;
 }
-export const sendMessageCreator = (): SendMessageCreatorType => ({type: SEND_MESSAGE});
-type UpdateNewBodyMessageCreatorType = {
-    type: typeof UPDATE_NEW_MESSAGE_BODY,
-    body: string
-}
-export const updateNewBodyMessageCreator = (body: string): UpdateNewBodyMessageCreatorType =>
-    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorType => ({type: SEND_MESSAGE, newMessageBody});
 
-type ActionsType = SendMessageCreatorType | UpdateNewBodyMessageCreatorType;
+
+
+type ActionsType = SendMessageCreatorType ;
 
 export default dialogsReducer;

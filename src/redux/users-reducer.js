@@ -89,6 +89,7 @@ export const setFollowingProgress = (isFetching, userId) => ({type: SET_FOLLOWIN
 //thunk creator
 export const getUsersThunk = (page, count) => (dispatch) => {
     dispatch(setFetching(true));
+    dispatch(setCurrentPage(page));
     userAPI.getUsers(page, count).then(
         data => {
             dispatch(setFetching(false));

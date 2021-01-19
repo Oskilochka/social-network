@@ -4,18 +4,30 @@ import styles from "./ProfileInfo.module.css";
 class ProfileStatus extends React.Component {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
-    activeEditMode() {
+    toogleEditMode = () => {
         this.setState({
-            editMode: true
+            editMode: !this.state.editMode
+        })
+        if(this.state.editMode === false ) {
+            this.props.updateStatus(this.state.status)
+        }
+    }
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.currentTarget.value
         })
     }
-    deactiveEditMode() {
-        this.setState({
-            editMode: false
-        })
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -24,12 +36,11 @@ class ProfileStatus extends React.Component {
                 { this.state.editMode
                     ?
                         <div>
-                            <input autoFocus={true} value={this.props.status}/>
-                            <button onClick={ this.deactiveEditMode.bind(this) }> SAVE </button>
+                            <input onChange={this.onStatusChange} autoFocus={true} value={this.state.status} onBlur={this.toogleEditMode }/>
                         </div>
                     :
                         <div>
-                            <span onDoubleClick={ this.activeEditMode.bind(this)  }> {this.props.status} </span>
+                            <span onDoubleClick={ this.toogleEditMode  }> {this.props.status || 'No status'} </span>
                         </div>
 
                 }
