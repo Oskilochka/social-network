@@ -3,6 +3,7 @@ import {profileAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_PROFILE_STATUS = 'SET_USER_PROFILE_STATUS';
+const DELETE_POST = 'DELETE_POST'
 
 let initialState = {
     posts: [
@@ -26,6 +27,12 @@ export const profileReducer = (state = initialState, action) => {
                 posts: [...state.posts, newPost]
             }
         }
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
+            }
+        }
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -44,6 +51,7 @@ export const profileReducer = (state = initialState, action) => {
 }
 
 export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 export const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile})
 export const setUserProfileStatus = (status) => ({type: SET_USER_PROFILE_STATUS, status})

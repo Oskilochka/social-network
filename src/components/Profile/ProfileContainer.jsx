@@ -7,8 +7,6 @@ import {getUserProfileStatus, getUserProfileThunk, updateUserProfileStatus} from
 import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
-    debugger;
-
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
@@ -31,9 +29,7 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    debugger
     return {
-
         userProfile: state.profilePage.userProfile,
         status: state.profilePage.status,
         authUserId: state.auth.id,

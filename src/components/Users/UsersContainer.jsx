@@ -8,12 +8,18 @@ import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../HOC/AuthRedirect";
+import {
+    getCount, getFollowingProgress, getIsFetching,
+    getPage,
+    getTotalUserCount,
+    getUsers
+} from "../../redux/user-selectors";
 
 class UsersApiRequest extends React.Component {
 
     //for side effects, run once
     componentDidMount() {
-       this.props.getUsersThunk(this.props.page, this.props.count);
+        this.props.getUsersThunk(this.props.page, this.props.count);
     }
 
     //render new list of users when number of page is change
@@ -39,16 +45,16 @@ class UsersApiRequest extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        count: state.usersPage.count,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        page: state.usersPage.page,
-        isFetching: state.usersPage.isFetching,
-        followingProgress: state.usersPage.followingProgress
+        users: getUsers(state),
+        count: getCount(state),
+        totalUsersCount: getTotalUserCount(state),
+        page: getPage(state),
+        isFetching: getIsFetching(state),
+        followingProgress: getFollowingProgress(state)
     }
 }
 
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, { getUsersThunk, followThunk, unfollowThunk, setCurrentPage, setFollowingProgress})
+    connect(mapStateToProps, {getUsersThunk, followThunk, unfollowThunk, setCurrentPage, setFollowingProgress})
 )(UsersApiRequest);

@@ -23,13 +23,16 @@ const NewPostReduxForm = reduxForm({
     form: 'newPost'
 })(NewPostForm)
 
-const MyPosts = (props) => {
+function MyPosts(props) {
+    console.log("posts")
+
     let postsElements =
         props.posts.map(p => <Post message={p.message} likeCount={p.likesCount}/>)
 
     const addPost = (values) => {
         props.addPost(values.newPostText)
     }
+
     return (
         <div className={styles.post}>
             <h2>My posts</h2>
