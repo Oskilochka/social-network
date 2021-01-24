@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './FormsWrap.module.css'
 
+//Task: rewrite to less same code
+
 export const Textarea = ({input, meta, ...props}) => {
     const isError = meta.touched && meta.error;
     return (
@@ -10,6 +12,7 @@ export const Textarea = ({input, meta, ...props}) => {
         </div>
     )
 }
+
 export const Input = ({input, meta, ...props}) => {
     const isError = meta.touched && meta.error;
     return (

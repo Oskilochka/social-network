@@ -14,9 +14,10 @@ let mapDispatchToProps = (dispatch) => {
         sendMessage: (newMessageBody) => {
             dispatch(sendMessageCreator(newMessageBody))
         },
-
     }
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect)(Dialogs);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs);

@@ -21,6 +21,9 @@ const Navbar = () => {
                     <NavLink to='/users' activeClassName={styles.activeLink}>Users</NavLink>
                 </div>
             </div>
+
+            {/*Rewrite friend block cause of duplication code*/}
+
             <div className={styles.friends}>
                 <h2 className={styles.header}>Friends</h2>
                 <div className={styles.friendsWrap}>
@@ -43,7 +46,6 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                 </div>
-
             </div>
         </div>
     );

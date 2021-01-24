@@ -5,6 +5,7 @@
     margin-left: 3%;
     border-radius: 25px;
 }
+
 .dialog {
     display: flex;
     align-items: center;
@@ -12,14 +13,14 @@
     color: white;
     font-weight: bold;
     text-decoration: none;
-
 }
+
 .dialog:hover {
     color: #aeff00;
 }
 
 .dialogsItems {
-    background-color:  #19376c ;
+    background-color: #19376c;
     border-radius: 25px 0px 0px 25px;
     border: 3px solid #19376c;
     border-right: none;
@@ -27,7 +28,7 @@
 
 .messagesItems {
     padding: 10px;
-    background-color:#ccdefe;
+    background-color: #ccdefe;
     border-radius: 0px 25px 25px 0px;
     border: 3px solid #19376c;
     border-left: none;
@@ -40,6 +41,7 @@
     border-radius: 25px 0px 0px 25px;
     color: black;
 }
+
 .activeItem:hover {
     color: #19376c;
 }
@@ -70,12 +72,12 @@
     width: 70%;
     height: 23px;
     border: 2px solid #19376c;
-
 }
 
 .textarea:focus {
     border: 2px solid darkgreen;
 }
+
 .send {
     border-radius: 25px;
     padding: 15px 20px;

@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 
-
 const maxAuthLength = maxLength(50)
 
 const LoginForm = (props) => {
@@ -24,23 +23,18 @@ const LoginForm = (props) => {
                 <h5>remember me</h5>
                 <Field component={Input} name={'rememberMe'} className={styles.rememberCheck} type={'checkbox'}/>
             </div>
-
             <button className={styles.submitBtn}>Log In</button>
         </form>
     )
 }
 
-const LoginReduxForm = reduxForm({
-    form: 'login'
-})(LoginForm)
+const LoginReduxForm = reduxForm({ form: 'login'})(LoginForm)
 
 const Auth = (props) => {
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
-    if (props.isAuth) {
-        return <Redirect to={'/profile'}/>
-    }
+    if (props.isAuth) return <Redirect to={'/profile'}/>
 
     return (
         <div className={styles.wrap}>

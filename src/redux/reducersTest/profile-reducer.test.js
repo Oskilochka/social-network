@@ -11,24 +11,17 @@ it('amount of post after added should +1', () => {
     let action = addPostActionCreator('newPost')
     // testing
     let newState = profileReducer(state, action)
-    // expected
+    // expected result
     expect(newState.posts.length).toBe(3)
 });
 it('added and correct message of post', () => {
-    //data for testing
     let action = addPostActionCreator('newPost')
-    // testing
     let newState = profileReducer(state, action)
-    // expected
     expect(newState.posts[2].message).toBe('newPost')
 });
-
 it('amount of post after deleted should -1', () => {
-    //data for testing
-    let action = deletePost(1)
-    // testing
+    let action = deletePost(2)
     let newState = profileReducer(state, action)
-    // expected
-    expect(newState.posts.length).toBe(2)
+    expect(newState.posts.length).toBe(1)
 });
 

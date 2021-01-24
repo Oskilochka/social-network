@@ -23,7 +23,6 @@ const Header = (props) => {
                         <span className={styles.loginBtn}>Login</span>
                     </NavLink>
                 }
-
             </div>
         </div>
     );

@@ -1,7 +1,3 @@
-.formWrap.error textarea {
-    border: 2px solid red;
-}
-
-.formWrap.error input {
+.formWrap.error textarea, .formWrap.error input {
     border: 2px solid red;
 }

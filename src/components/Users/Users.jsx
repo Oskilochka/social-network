@@ -32,11 +32,11 @@ let Users = (props) => {
                     {u.followed
                         ? <button disabled={props.followingProgress.some(id => id === u.id)}
                                   className={styles.unfollowBtn}
-                                  onClick={ () => props.unfollowThunk(u.id) }
+                                  onClick={() => props.unfollowThunk(u.id)}
                         > Unfollow </button>
-                        : <button disabled={props.followingProgress.some( id => id === u.id)}
+                        : <button disabled={props.followingProgress.some(id => id === u.id)}
                                   className={styles.followBtn}
-                                  onClick={ () => props.followThunk(u.id) }>
+                                  onClick={() => props.followThunk(u.id)}>
                             Follow </button>
                     }
                 </div>

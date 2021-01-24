@@ -1,7 +1,5 @@
 .wrap {
-
     margin-left: 3%;
-
 }
 
 .form {
@@ -24,7 +22,6 @@ input {
     padding: 5px 5px;
     width: 200px;
     cursor: pointer;
-
 }
 
 .rememberCheck {

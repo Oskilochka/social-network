@@ -69,7 +69,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 followingProgress: action.isFetching
-                    ? [...state.followingProgress, action.userId ]
+                    ? [...state.followingProgress, action.userId]
                     : state.followingProgress.filter(id => id !== action.userId)
             }
         }
@@ -78,6 +78,7 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
+//action creators
 export const acceptFollow = (userId) => ({type: ACCEPT_FOLLOW, userId});
 export const acceptUnfollow = (userId) => ({type: ACCEPT_UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
@@ -86,37 +87,33 @@ export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page})
 export const setFetching = (isFetching) => ({type: SET_FETCHING, isFetching})
 export const setFollowingProgress = (isFetching, userId) => ({type: SET_FOLLOWING_PROGRESS, isFetching, userId})
 
-//thunk creator
-export const getUsersThunk = (page, count) => (dispatch) => {
+//thunk creators
+export const getUsersThunk = (page, count) => async (dispatch) => {
     dispatch(setFetching(true));
     dispatch(setCurrentPage(page));
-    userAPI.getUsers(page, count).then(
-        data => {
-            dispatch(setFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-        }
-    )
+    let data = await userAPI.getUsers(page, count)
+    dispatch(setFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
 }
 
-export const unfollowThunk = (userId) => (dispatch) => {
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
     dispatch(setFollowingProgress(true, userId))
-    userAPI.unfollow(userId).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(acceptUnfollow(userId))
-        }
-        dispatch(setFollowingProgress(false, userId))
-    });
+    let response = await apiMethod(userId)
+
+    if (!response.data.resultCode) {
+        dispatch(actionCreator(userId))
+    }
+    dispatch(setFollowingProgress(false, userId))
 }
 
-export const followThunk = (userId) => (dispatch) => {
-    dispatch(setFollowingProgress(true, userId))
-    userAPI.follow(userId).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(acceptFollow(userId))
-        }
-        dispatch(setFollowingProgress(false, userId))
-    });
+
+export const unfollowThunk = (userId) => async (dispatch) => {
+    followUnfollowFlow(dispatch, userId, userAPI.unfollow.bind(userAPI), acceptUnfollow)
+}
+
+export const followThunk = (userId) => async (dispatch) => {
+    followUnfollowFlow(dispatch, userId, userAPI.follow.bind(userAPI), acceptFollow)
 }
 
 export default usersReducer;

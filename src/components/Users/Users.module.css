@@ -4,7 +4,6 @@
     border-radius: 50%;
 }
 
-
 .wrap {
     margin-left: 3%;
 }
@@ -64,6 +63,3 @@
     border: #19376c 1px solid;
 }
 
-.preloader {
-    width: 150px;
-}

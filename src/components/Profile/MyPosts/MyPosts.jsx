@@ -11,7 +11,7 @@ const NewPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <Field className={styles.postInput} placeholder='Write whatever you want' name='newPostText'
-                   validate={ [required, maxPostLength] }
+                   validate={[required, maxPostLength]}
                    component={Textarea}
             />
             <button className={styles.addPostBtn}>Add post</button>
@@ -19,17 +19,13 @@ const NewPostForm = (props) => {
     )
 }
 
-const NewPostReduxForm = reduxForm({
-    form: 'newPost'
-})(NewPostForm)
+const NewPostReduxForm = reduxForm({form: 'newPost'})(NewPostForm)
 
-function MyPosts(props) {
-    console.log("posts")
-
+const MyPosts = (props) => {
     let postsElements =
         props.posts.map(p => <Post message={p.message} likeCount={p.likesCount}/>)
 
-    const addPost = (values) => {
+    let addPost = (values) => {
         props.addPost(values.newPostText)
     }
 

@@ -1,0 +1,41 @@
+Tasks:
+1. Redesign app with material ui
+
+2. Rewrite js to ts
+
+3. Rewrite FormWrap.js to less same code
+
+4. Create all required fields in profile info
+
+5. Rewrite mapDispatchToProps in short way:
+        DialogsContainer.jsx,
+        MyPostsContainer.jsx
+
+6. Rewrite class components to func with using hooks:
+        HeaderContainer.jsx,
+        DialogsContainer.jsx,
+        AuthRedirect.jsx,
+        MyPostsContainer.jsx,
+        ProfileContainer.jsx,
+        UserContainer.jsx
+
+7. Make a variable to colors
+
+8. Write tests for components and reducers
+
+9. Rewrite friend block cause of duplication code:
+        Navbar.jsx (27)
+
+10. Create dialogs from DialogsAPI
+
+11. Add a profile avatar
+
+12. Add field to edit in profile
+
+13. Add changing avatar
+
+14. Add 2 themes && 2 languages
+
+15. Add pagination
+
+16. Fix preloader in whole app, while follow/unfollow && others

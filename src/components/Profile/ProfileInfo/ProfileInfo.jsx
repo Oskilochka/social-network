@@ -1,15 +1,12 @@
 import React from 'react'
 import styles from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
-
 import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
-
     if (!props.userProfile) {
         return <Preloader/>
     }
-
     return (
         <div>
             <div className={styles.info}>
@@ -17,11 +14,7 @@ const ProfileInfo = (props) => {
                 <div>
                     <h3> {props.userProfile.fullName} </h3>
                     <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-
                     <h4> {props.userProfile.lookingForAJobDescription} </h4>
-
-                   {/* <h5>Web site: <a
-                        href={props.userProfile.contacts.github}> github </a></h5>*/}
                 </div>
             </div>
         </div>
