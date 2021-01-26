@@ -5,19 +5,12 @@ import ProfileStatus from './ProfileStatus'
 import {useDispatch, useSelector} from "react-redux";
 import userPhoto from "../../../assets/img/profileLogo.jpg";
 import {saveAvatar} from "../../../redux/profile-reducer";
+import {getStatus, getUserProfile} from "../../../redux/selectors/profile-selectors";
 
 const ProfileInfo = (props) => {
-    const status = useSelector((state) => {
-        return state.profilePage.status
-    })
-    const updateStatus = useSelector((state) => {
-        return state.profilePage.status
-    })
-
-    const userProfile = useSelector((state) => {
-        return state.profilePage.userProfile
-    })
-
+    const status = useSelector(getStatus)
+    const updateStatus = useSelector(getStatus)
+    const userProfile = useSelector(getUserProfile)
     const dispatch = useDispatch()
 
     const onImageChange = (e) => {

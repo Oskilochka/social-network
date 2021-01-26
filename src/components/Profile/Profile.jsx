@@ -7,12 +7,10 @@ import {getUserProfileStatus, getUserProfileThunk} from "../../redux/profile-red
 import {compose} from "redux";
 import {withAuthRedirect} from "../HOC/AuthRedirect";
 import MyPosts from "./MyPosts/MyPosts";
+import {getAuthUserId} from "../../redux/selectors/profile-selectors";
 
 const Profile = (props) => {
-
-    const authUserId = useSelector((state) => {
-        return state.auth.id
-    })
+    const authUserId = useSelector(getAuthUserId)
 
     const dispatch = useDispatch()
 
@@ -27,8 +25,8 @@ const Profile = (props) => {
 
     return (
         <div className={styles.content}>
-            <ProfileInfo isOwner={!props.match.params.userId} userProfile={props.userProfile} status={props.status} updateStatus={props.updateStatus} />
-            <MyPosts  />
+            <ProfileInfo isOwner={!props.match.params.userId}/>
+            <MyPosts/>
         </div>
     );
 }

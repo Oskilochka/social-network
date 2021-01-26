@@ -20,15 +20,14 @@ Tasks:
 
 14. Add 2 themes && 2 languages
 
-15. Add pagination
 
 16. Fix preloader in whole app, while follow/unfollow && others
+
 17. Redux Ducks
 
 In progress:
+15. Add pagination
 
-11. Add a profile avatar
-13. Add changing avatar
 
 
 
@@ -48,3 +47,6 @@ Connect was deleted so this task is unnecessary
         DialogsContainer.jsx,
         MyPostsContainer.jsx,
         UserContainer.jsx
+
+11. Add a profile avatar
+13. Add changing avatar

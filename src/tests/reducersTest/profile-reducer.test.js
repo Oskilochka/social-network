@@ -1,4 +1,4 @@
-import profileReducer, {addPostActionCreator, deletePost} from "../profile-reducer";
+import profileReducer, {addPostActionCreator, deletePost} from "../../redux/profile-reducer";
 let state = {
     posts: [
         {id: 1, message: 'Hello everyone', likesCount: '12'},
