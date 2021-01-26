@@ -8,7 +8,7 @@ const ProfileStatus = (props) => {
         setStatus(props.status)
     }, [props.status])
 
-    const toggleEditMode = () => {
+    let toggleEditMode = () => {
         if (editMode) {
             setEditMode(false);
             props.updateStatus(status)
@@ -17,9 +17,10 @@ const ProfileStatus = (props) => {
         }
     }
 
-    const onStatusChange = (e) => {
+    let onStatusChange = (e) => {
         setStatus(e.currentTarget.value)
     }
+
     return (
         <div>
             {editMode

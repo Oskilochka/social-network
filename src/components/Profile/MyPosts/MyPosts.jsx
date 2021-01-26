@@ -4,6 +4,8 @@ import Post from './Post/Post'
 import {Field, reduxForm} from "redux-form";
 import {maxLength, required} from "../../../utilities/validators/validators";
 import {Textarea} from "../../common/FormsWrap/FormsWrap";
+import {useDispatch, useSelector} from "react-redux";
+import {addPostActionCreator} from "../../../redux/profile-reducer";
 
 const maxPostLength = maxLength(100)
 
@@ -22,11 +24,18 @@ const NewPostForm = (props) => {
 const NewPostReduxForm = reduxForm({form: 'newPost'})(NewPostForm)
 
 const MyPosts = (props) => {
+    const newPostText = useSelector(state => state.profilePage.newPostText)
+    const posts = useSelector(state => state.profilePage.posts)
+    const dispatch = useDispatch()
+    const addPostFunc = (newPostText) => {
+        dispatch(addPostActionCreator(newPostText));
+    }
+
     let postsElements =
-        props.posts.map(p => <Post message={p.message} likeCount={p.likesCount}/>)
+        posts.map(p => <Post message={p.message} likeCount={p.likesCount}/>)
 
     let addPost = (values) => {
-        props.addPost(values.newPostText)
+        addPostFunc(values.newPostText)
     }
 
     return (

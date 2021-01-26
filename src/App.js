@@ -2,22 +2,24 @@ import React from 'react'
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
 import Settings from "./components/Settings/Settings";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import Auth from "./components/Auth/Auth";
-import HeaderContainer from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {initializeApp} from './redux/app-reducer';
 import Preloader from "./components/common/Preloader/Preloader";
+import Users from "./components/Users/Users";
+import Profile from "./components/Profile/Profile";
+import Dialogs from "./components/Dialogs/Dialogs";
+import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";
+import Header from "./components/Header/Header";
+
+const Auth = React.lazy(() => import('./components/Auth/Auth'));
+
 
 class App extends React.Component {
 
     componentDidMount() {
         this.props.initializeApp()
     }
-
 
     render() {
         if (!this.props.initialized) {
@@ -27,20 +29,20 @@ class App extends React.Component {
             <BrowserRouter>
                 <div className='appWrap'>
                     <div className='header'>
-                        <HeaderContainer/>
+                        <Header />
                     </div>
                     <div className='body'>
                         <Navbar/>
                         <Route path='/dialogs'
-                               render={() => <DialogsContainer/>}/>
+                               render={() => <Dialogs />}/>
                         <Route path='/profile/:userId?'
-                               render={() => <ProfileContainer/>}/>
+                               render={() => <Profile/>}/>
                         <Route path='/users'
-                               render={() => <UsersContainer/>}/>
+                               render={() => <Users/>}/>
                         <Route path='/settings'
                                render={() => <Settings/>}/>
                         <Route path='/login'
-                               render={() => <Auth/>}/>
+                               render={ withSuspense(Auth) }/>
                     </div>
                 </div>
             </BrowserRouter>

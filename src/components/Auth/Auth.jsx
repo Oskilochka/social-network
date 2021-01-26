@@ -3,7 +3,7 @@ import styles from "./Auth.module.css";
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../common/FormsWrap/FormsWrap";
 import {maxLength, required} from "../../utilities/validators/validators";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 
@@ -23,18 +23,25 @@ const LoginForm = (props) => {
                 <h5>remember me</h5>
                 <Field component={Input} name={'rememberMe'} className={styles.rememberCheck} type={'checkbox'}/>
             </div>
+
             <button className={styles.submitBtn}>Log In</button>
         </form>
     )
 }
 
-const LoginReduxForm = reduxForm({ form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm({
+    form: 'login'
+})(LoginForm)
 
 const Auth = (props) => {
+    let isAuth = useSelector(state => state.auth.isAuth)
+    let dispatch = useDispatch()
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        dispatch(login(formData.email, formData.password, formData.rememberMe))
     }
-    if (props.isAuth) return <Redirect to={'/profile'}/>
+    if (isAuth) {
+        return <Redirect to={'/profile'}/>
+    }
 
     return (
         <div className={styles.wrap}>
@@ -43,9 +50,4 @@ const Auth = (props) => {
         </div>
     );
 }
-
-let mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
-})
-
-export default connect(mapStateToProps, {login})(Auth);
+export default Auth;
