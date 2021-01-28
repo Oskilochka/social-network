@@ -5,7 +5,6 @@ Tasks:
 
 3. Rewrite FormWrap.js to less same code
 
-4. Create all required fields in profile info
 
 7. Make a variable to colors
 
@@ -16,7 +15,8 @@ Tasks:
 
 10. Create dialogs from DialogsAPI
 
-12. Add field to edit in profile
+15. Add pagination
+
 
 14. Add 2 themes && 2 languages
 
@@ -26,8 +26,7 @@ Tasks:
 17. Redux Ducks
 
 In progress:
-15. Add pagination
-
+12. Add field to edit in profile
 
 
 
@@ -43,10 +42,11 @@ Connect was deleted so this task is unnecessary
         ProfileContainer.jsx,
         HeaderContainer.jsx,
         AuthRedirect.jsx,
-        Auth.jsx (conect),
+        NotFound.jsx (conect),
         DialogsContainer.jsx,
         MyPostsContainer.jsx,
         UserContainer.jsx
 
 11. Add a profile avatar
 13. Add changing avatar
+4. Create all required fields in profile info

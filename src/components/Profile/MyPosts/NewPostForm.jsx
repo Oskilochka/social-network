@@ -6,9 +6,9 @@ import {Textarea} from "../../common/FormsWrap/FormsWrap";
 
 const maxPostLength = maxLength(100)
 
-const NewPostForm = (props) => {
+const NewPostForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field className={styles.postInput} placeholder='Write whatever you want' name='newPostText'
                    validate={[required, maxPostLength]}
                    component={Textarea}

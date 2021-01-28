@@ -1,4 +1,5 @@
 import {userAPI} from "../api/api";
+import {updateObjectsInArray} from "../utilities/object-helpers";
 
 const ACCEPT_UNFOLLOW = 'ACCEPT_UNFOLLOW';
 const ACCEPT_FOLLOW = 'ACCEPT_FOLLOW';
@@ -22,23 +23,26 @@ const usersReducer = (state = initialState, action) => {
         case ACCEPT_FOLLOW: {
             return {
                 ...state,
-                users: state.users.map(u => {
+                users: updateObjectsInArray(state.users, action.userId, 'id', {followed: true})
+              /*  users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
                     return u;
-                })
+                })*/
             }
         }
         case ACCEPT_UNFOLLOW: {
             return {
                 ...state,
-                users: state.users.map(u => {
+                users: updateObjectsInArray(state.users, action.userId, 'id', {followed: false})
+
+              /*  users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
                     return u;
-                })
+                })*/
             }
         }
         case SET_USERS: {

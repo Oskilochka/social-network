@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {getUserProfile} from "./selectors/profile-selectors";
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -73,10 +74,15 @@ export const getUserProfileStatus = (userId) => async (dispatch) => {
     dispatch(setUserProfileStatus(response.data))
 }
 export const updateUserProfileStatus = (status) => async (dispatch) => {
-    let response = await profileAPI.updateStatus(status)
-    if (!response.data.resultCode) {
-        dispatch(setUserProfileStatus(status)
-        )
+    try {
+        let response = await profileAPI.updateStatus(status)
+        if (!response.data.resultCode) {
+            dispatch(setUserProfileStatus(status)
+            )
+        }
+    } catch (error) {
+        //dispatch
+        alert('some error')
     }
 }
 export const saveAvatar = (file) => async (dispatch) => {
@@ -84,6 +90,13 @@ export const saveAvatar = (file) => async (dispatch) => {
     if (!response.data.resultCode) {
         dispatch(saveAvatarSuccess(response.data.data.photos)
         )
+    }
+}
+export const saveProfileInfo = (profile) => async (dispatch, getState) => {
+    let userId = getState().auth.id
+    let response = await profileAPI.saveProfile(profile)
+    if (!response.data.resultCode) {
+        dispatch(getUserProfileThunk(userId))
     }
 }
 

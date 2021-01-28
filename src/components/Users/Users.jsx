@@ -4,6 +4,9 @@ import {UsersPagination} from "./UsersPagination";
 import {UsersList} from "./UsersList";
 
 const UsersComponent = () => {
+
+  /*  let users =*/
+
     return (
         <div className={styles.wrap}>
             <UsersPagination/>

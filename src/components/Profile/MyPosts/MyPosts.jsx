@@ -14,10 +14,11 @@ const MyPosts = (props) => {
     }
 
     let postsElements =
-        posts.map(p => <Post message={p.message} likeCount={p.likesCount}/>)
+        posts.map(p => <Post key={p.id} message={p.message} likeCount={p.likesCount}/>)
 
     let addPost = (values) => {
         addPostFunc(values.newPostText)
+        values.newPostText = ""
     }
 
     return (

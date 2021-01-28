@@ -21,7 +21,10 @@ const Dialogs = (props) => {
     let messageElements = messages.map(m => <Message message={m.message}/>);
     let newMessageBody = newMessageText;
 
-    let addNewMessage = (values) => sendMessage(values.newMessageBody)
+    let addNewMessage = (values) => {
+        sendMessage(values.newMessageBody)
+        values.newMessageBody = ""
+    }
 
     return (
         <div className={styles.content}>

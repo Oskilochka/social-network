@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from "react-redux";
-import {getStatus} from "../../../redux/selectors/profile-selectors";
+import {useDispatch} from "react-redux";
 import {updateUserProfileStatus} from "../../../redux/profile-reducer";
 
 const ProfileStatus = (props) => {
@@ -14,11 +13,13 @@ const ProfileStatus = (props) => {
     }, [props.status])
 
     let toggleEditMode = () => {
-        if (editMode) {
-            setEditMode(false);
-            dispatch(updateUserProfileStatus(status))
-        } else {
-            setEditMode(true)
+        if (props.isOwner) {
+            if (editMode) {
+                setEditMode(false);
+                dispatch(updateUserProfileStatus(status))
+            } else {
+                setEditMode(true)
+            }
         }
     }
 
@@ -26,8 +27,7 @@ const ProfileStatus = (props) => {
         setStatus(e.currentTarget.value)
     }
 
-    return (
-        <div>
+    return (<>
             {editMode
                 ?
                 <div>
@@ -39,7 +39,7 @@ const ProfileStatus = (props) => {
                     <span onDoubleClick={toggleEditMode}> {props.status || 'no status'} </span>
                 </div>
             }
-        </div>
+        </>
     )
 }
 

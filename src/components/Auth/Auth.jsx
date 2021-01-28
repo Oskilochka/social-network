@@ -9,7 +9,7 @@ const Auth = (props) => {
     let isAuth = useSelector(state => state.auth.isAuth)
     let dispatch = useDispatch()
     const onSubmit = (formData) => {
-        dispatch(login(formData.email, formData.password, formData.rememberMe))
+        dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
     }
     if (isAuth) {
         return <Redirect to={'/profile'}/>
@@ -22,4 +22,4 @@ const Auth = (props) => {
         </div>
     );
 }
-export default Auth;    
+export default Auth;

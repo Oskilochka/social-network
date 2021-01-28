@@ -1,12 +1,16 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
 type initialStateType = typeof initialState
 
+/*
+type MessageType = {id: number, message: string}
+*/
+
 let initialState = {
     messages:  [
         {id: 1, message: 'Hello'},
         {id: 2, message: 'Goodbye'},
         {id: 3, message: 'Have a nice day!'}
-    ],
+    ] /*as Array<MessageType>*/,
     dialogs: [
         {id: 1, name: 'Julia'},
         {id: 2, name: 'Vadim'},
