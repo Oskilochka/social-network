@@ -1,5 +1,4 @@
 import {profileAPI} from "../api/api";
-import {getUserProfile} from "./selectors/profile-selectors";
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -7,6 +6,12 @@ const SET_USER_PROFILE_STATUS = 'SET_USER_PROFILE_STATUS';
 const DELETE_POST = 'DELETE_POST'
 const SAVE_AVATAR_SUCCESS = 'SAVE_AVATAR_SUCCESS'
 
+
+/*export type InitialStateType = {
+    posts: [],
+    userProfile: number | null,
+    status: string
+}*/
 let initialState = {
     posts: [
         {id: 1, message: 'Hello everyone', likesCount: '12'},

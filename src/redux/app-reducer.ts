@@ -10,7 +10,7 @@ let initialState: InitialStateType = {
     initialized: false
 }
 
-const appReducer = (state = initialState, action: any): InitialStateType => {
+const appReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case SET_INITIALIZED_SUCCESS:
             return {
@@ -27,6 +27,8 @@ export const setInitializedSuccess = (): InitializedSuccessActionType => ({type:
 export type InitializedSuccessActionType = {
     type: typeof SET_INITIALIZED_SUCCESS
 }
+
+type ActionType = InitializedSuccessActionType;
 
 //ThunkCreator
 export const initializeApp = () => (dispatch: any) => {
