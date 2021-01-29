@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import {useSelector} from "react-redux";
 import {getUserProfile} from "../../../redux/selectors/profile-selectors";
 
-export const ProfileData = (props) => {
+export const ProfileData: FunctionComponent = () => {
     const userProfile = useSelector(getUserProfile)
 
     return (

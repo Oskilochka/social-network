@@ -1,12 +1,12 @@
 import React from 'react'
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
+import {Navbar} from "./components/Navbar/Navbar";
 import {Route, withRouter, Switch, Redirect} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import {connect} from "react-redux";
 import {initializeApp} from './redux/app-reducer';
-import Preloader from "./components/common/Preloader/Preloader";
-import Users from "./components/Users/Users";
+import {Preloader} from "./components/common/Preloader/Preloader";
+import {Users} from "./components/Users/Users";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";

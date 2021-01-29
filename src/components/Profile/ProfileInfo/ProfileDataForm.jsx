@@ -31,7 +31,7 @@ export const ProfileDataForm = (props) => {
                         <button type="submit" >
                             Save
                         </button>
-                        <button  type="cancel" onClick={() => {props.setEditMode(false)}}>
+                        <button  type="submit" >
                             Discard
                         </button>
                     </Form>

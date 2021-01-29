@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
-export const NavbarItems = () => {
+export const NavbarItems: FunctionComponent = () => {
     return (
         <div className={styles.wrap}>
             <div className={styles.navbar}>

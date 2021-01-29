@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FunctionComponent} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {getFollowingProgress,getUsers} from "../../redux/selectors/user-selectors";
 import {followThunk, unfollowThunk} from "../../redux/users-reducer";
@@ -6,7 +6,7 @@ import styles from "./Users.module.css";
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../assets/img/profileLogo.jpg";
 
-export const UsersList = () => {
+export const UsersList: FunctionComponent = () => {
     const users = useSelector(getUsers)
     const followingProgress = useSelector(getFollowingProgress)
     const dispatch = useDispatch()

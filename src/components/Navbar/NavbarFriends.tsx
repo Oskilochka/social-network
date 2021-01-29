@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 import friendPhoto from '../../assets/img/logoFriend.jpg'
 
-export const NavbarFriends = () => {
+export const NavbarFriends: FunctionComponent = () => {
     return (
         <div className={styles.friends}>
             <h2 className={styles.header}>Friends</h2>

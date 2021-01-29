@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from './Dialog.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
 import {sendMessageCreator} from "../../redux/dialogs-reducer";
-import {NewNessageFormRedux} from "./NewMessageForm";
+import {NewMessageFormRedux} from "./NewMessageForm";
 
-const Dialogs = (props) => {
+const Dialogs: FunctionComponent = () => {
     const dialogs = useSelector(state => state.dialogsPage.dialogs)
     const messages = useSelector(state => state.dialogsPage.messages)
     const newMessageText = useSelector(state => state.dialogsPage.newMessageBody)
@@ -31,7 +31,7 @@ const Dialogs = (props) => {
             <div className={styles.dialogsItems}> {dialogsElements} </div>
             <div className={styles.messagesItems}>
                 <div> {messageElements} </div>
-                <NewNessageFormRedux onSubmit={addNewMessage}/>
+                <NewMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     )

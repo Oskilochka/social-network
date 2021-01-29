@@ -1,14 +1,15 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from "./Auth.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {LoginReduxForm} from "./AuthForm";
+import {setIsAuth} from "../../redux/selectors/auth-selectors";
 
-const Auth = (props) => {
-    let isAuth = useSelector(state => state.auth.isAuth)
+const Auth: FunctionComponent = () => {
+    let isAuth = useSelector(setIsAuth)
     let dispatch = useDispatch()
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: any) => {
         dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
     }
     if (isAuth) {

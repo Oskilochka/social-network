@@ -11,7 +11,7 @@ Tasks:
 8. Write tests for components and reducers
 
 9. Rewrite friend block cause of duplication code:
-        Navbar.jsx (27)
+        Navbar.tsx (27)
 
 10. Create dialogs from DialogsAPI
 
@@ -42,7 +42,7 @@ Connect was deleted so this task is unnecessary
         ProfileContainer.jsx,
         HeaderContainer.jsx,
         AuthRedirect.jsx,
-        NotFound.jsx (conect),
+        NotFound.tsx (conect),
         DialogsContainer.jsx,
         MyPostsContainer.jsx,
         UserContainer.jsx

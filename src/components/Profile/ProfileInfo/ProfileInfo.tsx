@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styles from "./ProfileInfo.module.css";
-import Preloader from "../../common/Preloader/Preloader";
+import {Preloader} from "../../common/Preloader/Preloader";
 import ProfileStatus from './ProfileStatus'
 import {useDispatch, useSelector} from "react-redux";
 import userPhoto from "../../../assets/img/profileLogo.jpg";

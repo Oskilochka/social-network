@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from "./MyPosts.module.css";
 import {Field, reduxForm} from "redux-form";
 import {maxLength, required} from "../../../utilities/validators/validators";
@@ -6,7 +6,11 @@ import {Textarea} from "../../common/FormsWrap/FormsWrap";
 
 const maxPostLength = maxLength(100)
 
-const NewPostForm = ({handleSubmit}) => {
+type NewPostFormType = {
+    handleSubmit: any
+}
+
+const NewPostForm: FunctionComponent<NewPostFormType> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>
             <Field className={styles.postInput} placeholder='Write whatever you want' name='newPostText'

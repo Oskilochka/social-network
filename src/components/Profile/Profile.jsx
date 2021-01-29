@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom'
 import {getUserProfileStatus, getUserProfileThunk} from "../../redux/profile-reducer";
 import {compose} from "redux";
 import {withAuthRedirect} from "../HOC/AuthRedirect";
-import MyPosts from "./MyPosts/MyPosts";
+import {MyPosts} from "./MyPosts/MyPosts";
 import {getAuthUserId} from "../../redux/selectors/profile-selectors";
 
 const Profile = (props) => {

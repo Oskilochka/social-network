@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from "./MyPosts.module.css";
-import Post from './Post/Post'
+import {Post} from './Post/Post'
 import {useDispatch, useSelector} from "react-redux";
 import {addPostActionCreator} from "../../../redux/profile-reducer";
 import {NewPostReduxForm} from "./NewPostForm";
 
-const MyPosts = (props) => {
+export const MyPosts: FunctionComponent = () => {
     const newPostText = useSelector(state => state.profilePage.newPostText)
     const posts = useSelector(state => state.profilePage.posts)
     const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const MyPosts = (props) => {
     }
 
     let postsElements =
-        posts.map(p => <Post key={p.id} message={p.message} likeCount={p.likesCount}/>)
+        posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/> )
 
     let addPost = (values) => {
         addPostFunc(values.newPostText)
@@ -37,4 +37,3 @@ const MyPosts = (props) => {
     )
 }
 
-export default MyPosts;

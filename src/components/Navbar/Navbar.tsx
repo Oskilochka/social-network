@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {FunctionComponent} from 'react'
 import styles from "./Navbar.module.css";
 import {NavbarItems} from "./NavbarItems";
 import {NavbarFriends} from "./NavbarFriends";
 
-const Navbar = () => {
+export const Navbar: FunctionComponent = () => {
     return (
         <div className={styles.wrap}>
             <NavbarItems/>
@@ -12,4 +12,3 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
