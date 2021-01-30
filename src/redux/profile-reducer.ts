@@ -132,4 +132,3 @@ export const saveProfileInfo = (profile: ProfileType) => async (dispatch: any, g
     }
 }
 
-export default profileReducer;

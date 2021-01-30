@@ -1,14 +1,15 @@
-import React, {FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import styles from './../Dialog.module.css'
 
-type MessageTYpe = {
-    message: string
+type MessageType = {
+    message: string,
+    id: number
 }
 
-const Message: FunctionComponent<MessageTYpe> = ({message}) => {
+const Message: FC<MessageType> = ({message, id}) => {
     return (
         <div className={styles.message}>
-            {message}
+            {id} {message}
         </div>
     )
 }

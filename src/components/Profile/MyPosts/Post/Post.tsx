@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import styles from "./Post.module.css";
 import friendPhoto from '../../../../assets/img/logoFriend.jpg'
 
@@ -7,7 +7,7 @@ type PostType = {
     likesCount: number
 }
 
-export const Post: FunctionComponent<PostType> = ({message, likesCount}) => {
+export const Post: FC<PostType> = ({message, likesCount}) => {
     return (
         <div className={styles.item}>
             <div>

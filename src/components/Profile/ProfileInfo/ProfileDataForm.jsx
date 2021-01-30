@@ -3,7 +3,6 @@ import {Formik, Form, Field} from 'formik';
 import {useDispatch} from "react-redux";
 import {saveProfileInfo} from "../../../redux/profile-reducer";
 
-
 export const ProfileDataForm = (props) => {
     const dispatch = useDispatch()
 

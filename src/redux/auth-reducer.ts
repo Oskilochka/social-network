@@ -14,7 +14,7 @@ let initialState = {
     captcha: null as string | null
 }
 
-const authReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
         case SET_CAPTCHA:
@@ -49,7 +49,7 @@ type setCaptchaType = {
 }
 export const setCaptcha = (captcha: string): setCaptchaType => ( {type: SET_CAPTCHA, payload: {captcha}});
 
-type ActionType = setCaptchaType | SetAuthUserDataType
+type ActionsType = setCaptchaType | SetAuthUserDataType
 
 
 export const getAuthUserData = () => async (dispatch: any) => {

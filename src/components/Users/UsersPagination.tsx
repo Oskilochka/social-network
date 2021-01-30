@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {FC, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {
     getCount,
@@ -8,16 +8,14 @@ import {
 import {getUsersThunk} from "../../redux/users-reducer";
 import styles from "./Users.module.css";
 
-
-export const UsersPagination = () => {
+export const UsersPagination: FC = () => {
     const totalUsersCount = useSelector(getTotalUserCount)
     const count = useSelector(getCount)
     const page = useSelector(getPage)
 
     const dispatch = useDispatch()
 
-
-    const onPageChange = (pageNumber) => {
+    const onPageChange = (pageNumber: number) => {
         dispatch(getUsersThunk(pageNumber, count))
     }
 
@@ -40,8 +38,6 @@ export const UsersPagination = () => {
                 }} className={styles.changePageBtn + ' ' + (page === p && styles.selected)}> {p} </button>
             })}
         </div>
-
-
     )
 }
 

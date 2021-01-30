@@ -1,9 +1,10 @@
-import React, {FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import styles from "./Auth.module.css";
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../common/FormsWrap/FormsWrap";
 import {maxLength, required} from "../../utilities/validators/validators";
 import {useSelector} from "react-redux";
+import {getCaptcha} from "../../redux/selectors/auth-selectors";
 
 const maxAuthLength = maxLength(50)
 
@@ -12,8 +13,8 @@ type LoginFormTYpe = {
     error: any
 }
 
-const LoginForm: FunctionComponent<LoginFormTYpe> = ({handleSubmit,error }) => {
-    const captcha = useSelector(state => state.auth.captcha)
+const LoginForm: FC<LoginFormTYpe> = ({handleSubmit,error }) => {
+    const captcha = useSelector(getCaptcha)
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
             {error && <h2> {error} </h2>}

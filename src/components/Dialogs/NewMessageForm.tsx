@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import styles from './Dialog.module.css'
 import {Field, reduxForm} from "redux-form";
 import {Textarea} from "../common/FormsWrap/FormsWrap";
@@ -10,7 +10,7 @@ type NewMessageFormType = {
     handleSubmit: any
 }
 
-const NewMessageForm: FunctionComponent<NewMessageFormType> = ({handleSubmit}) => {
+const NewMessageForm: FC<NewMessageFormType> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit} className={styles.newMessage}>
             <Field className={styles.textarea} component={Textarea} name='newMessageBody'

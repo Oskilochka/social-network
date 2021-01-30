@@ -6,13 +6,13 @@ import Settings from "./components/Settings/Settings";
 import {connect} from "react-redux";
 import {initializeApp} from './redux/app-reducer';
 import {Preloader} from "./components/common/Preloader/Preloader";
-import {Users} from "./components/Users/Users";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";
 import Header from "./components/Header/Header";
 import {compose} from "redux";
 import {NotFound} from "./components/404/NotFound";
+import Users from "./components/Users/Users";
 
 const Auth = React.lazy(() => import('./components/Auth/Auth'));
 
@@ -67,6 +67,3 @@ export default compose(
     withRouter,
     connect(mapStateToProps, {initializeApp})
 )(App);
-/*
-export default App;
-*/

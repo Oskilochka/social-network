@@ -1,9 +1,9 @@
-import React, {FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import styles from "./Header.module.css";
 import headerIcon from '../../assets/img/headerIcon.png'
 import {AuthLogic} from "./AuthLogic";
 
-const Header: FunctionComponent = () => {
+const Header: FC = () => {
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>

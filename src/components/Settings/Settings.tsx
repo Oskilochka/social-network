@@ -1,7 +1,7 @@
-import React, {FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import styles from "./Settings.module.css";
 
-const Settings: FunctionComponent = () => {
+const Settings: FC = () => {
     return (
         <div className={styles.wrap}>
             <div>

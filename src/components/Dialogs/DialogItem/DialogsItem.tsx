@@ -1,5 +1,5 @@
-import React from 'react'
-import value from './../Dialog.module.css'
+import React, {FC} from 'react'
+import styles from './../Dialog.module.css'
 import {NavLink} from "react-router-dom";
 import friendPhoto from '../../../assets/img/logoFriend.jpg'
 
@@ -8,14 +8,13 @@ type DialogItemType = {
     id: number
 }
 
-const DialogItem = ({name, id}: DialogItemType) => {
+export const DialogItem: FC<DialogItemType> = ({name, id}) => {
     let path = '/dialogs/' + id
     return (
-        <NavLink className={value.dialog} activeClassName={value.activeItem} to={path}>
-            <img className={value.friendPhoto} src={friendPhoto} alt='friendPhoto'/>
-            {name}
+        <NavLink className={styles.dialog} activeClassName={styles.activeItem} to={path}>
+            <img className={styles.friendPhoto} src={friendPhoto} alt='friendPhoto'/>
+            <h4>{name}</h4>
         </NavLink>
     )
 }
 
-export default DialogItem;

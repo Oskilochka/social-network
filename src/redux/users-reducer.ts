@@ -1,6 +1,9 @@
 import {userAPI} from "../api/api";
 import {updateObjectsInArray} from "../utilities/object-helpers";
 import {UserType} from "../types/commonTypes";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./redux-store";
+import {Dispatch} from "redux";
 
 const ACCEPT_UNFOLLOW = 'ACCEPT_UNFOLLOW';
 const ACCEPT_FOLLOW = 'ACCEPT_FOLLOW';
@@ -21,7 +24,7 @@ let initialState = {
     followingProgress: [] as Array<number>
 }
 
-const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case ACCEPT_FOLLOW: {
             return {
@@ -76,10 +79,17 @@ const usersReducer = (state: InitialStateType = initialState, action: any): Init
 export const acceptFollow = (userId: number): AcceptFollowType => ({type: ACCEPT_FOLLOW, userId});
 export const acceptUnfollow = (userId: number): AcceptUnfollowType => ({type: ACCEPT_UNFOLLOW, userId})
 export const setUsers = (users: Array<UserType>): SetUsersType => ({type: SET_USERS, users})
-export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountType => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountType => ({
+    type: SET_TOTAL_USERS_COUNT,
+    totalUsersCount
+})
 export const setCurrentPage = (page: number): SetCurrentPageType => ({type: SET_CURRENT_PAGE, page})
 export const setFetching = (isFetching: boolean): SetFetchingType => ({type: SET_FETCHING, isFetching})
-export const setFollowingProgress = (isFetching: boolean, userId: number): SetFollowingProgressType => ({type: SET_FOLLOWING_PROGRESS, isFetching, userId})
+export const setFollowingProgress = (isFetching: boolean, userId: number): SetFollowingProgressType => ({
+    type: SET_FOLLOWING_PROGRESS,
+    isFetching,
+    userId
+})
 
 
 type AcceptFollowType = {
@@ -118,11 +128,21 @@ type SetFollowingProgressType = {
     userId: number
 }
 
-
+type ActionsType =
+    AcceptFollowType
+    | AcceptUnfollowType
+    | SetFollowingProgressType
+    | SetFetchingType
+    | SetCurrentPageType
+    | SetUsersType
+    | SetTotalUsersCountType
 
 
 //thunk creators
-export const getUsersThunk = (page: number, count: number) => async (dispatch: any) => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionsType>
+type DispatchType = Dispatch<ActionsType>
+
+export const getUsersThunk = (page: number, count: number): ThunkType => async (dispatch) => {
     dispatch(setFetching(true));
     dispatch(setCurrentPage(page));
     let data = await userAPI.getUsers(page, count)
@@ -131,7 +151,7 @@ export const getUsersThunk = (page: number, count: number) => async (dispatch: a
     dispatch(setTotalUsersCount(data.totalCount));
 }
 
-const followUnfollowFlow = async (dispatch: any, userId: number, apiMethod: any, actionCreator: any) => {
+const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any, actionCreator: (userId: number) => AcceptUnfollowType | AcceptFollowType) => {
     dispatch(setFollowingProgress(true, userId))
     let response = await apiMethod(userId)
 
@@ -141,12 +161,12 @@ const followUnfollowFlow = async (dispatch: any, userId: number, apiMethod: any,
     dispatch(setFollowingProgress(false, userId))
 }
 
-export const unfollowThunk = (userId: number) => async (dispatch: any) => {
-    followUnfollowFlow(dispatch, userId, userAPI.unfollow.bind(userAPI), acceptUnfollow)
+export const unfollowThunk = (userId: number): ThunkType => async (dispatch) => {
+    await _followUnfollowFlow(dispatch, userId, userAPI.unfollow.bind(userAPI), acceptUnfollow)
 }
 
-export const followThunk = (userId: number) => async (dispatch: any) => {
-    followUnfollowFlow(dispatch, userId, userAPI.follow.bind(userAPI), acceptFollow)
+export const followThunk = (userId: number): ThunkType => async (dispatch) => {
+    await _followUnfollowFlow(dispatch, userId, userAPI.follow.bind(userAPI), acceptFollow)
 }
 
 export default usersReducer;
