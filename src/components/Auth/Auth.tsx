@@ -5,11 +5,12 @@ import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {LoginReduxForm} from "./AuthForm";
 import {getIsAuth} from "../../redux/selectors/auth-selectors";
+import {LoginFormDataType} from "../../types/commonTypes";
 
 const Auth: FC = () => {
     let isAuth = useSelector(getIsAuth)
     let dispatch = useDispatch()
-    const onSubmit = (formData: any) => {
+    const onSubmit = (formData: LoginFormDataType) => {
         dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
     }
     if (isAuth) {

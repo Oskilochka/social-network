@@ -39,6 +39,7 @@ export const ProfileInfo: FC<ProfileInfoType> = ({isOwner}) => {
                 <ProfileStatus isOwner={isOwner} status={status} />
                 <div>
                     {editMode
+                        // @ts-ignore
                         ? <ProfileDataForm profile={userProfile} setEditMode={setEditMode}/>
                         : <div><ProfileData/>
                             {isOwner && <button onClick={() => {

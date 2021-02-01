@@ -31,7 +31,7 @@ export type InitializedSuccessActionType = {
 type ActionsType = InitializedSuccessActionType;
 
 //ThunkCreator
-export const initializeApp = () => (dispatch: any) => {
+export const initializeApp = () =>  (dispatch: any) => {
     let promise = dispatch(getAuthUserData());
     Promise.all([promise]).then(() => {
         dispatch(setInitializedSuccess());

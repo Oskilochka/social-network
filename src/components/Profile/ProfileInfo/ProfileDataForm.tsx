@@ -1,20 +1,38 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {Formik, Form, Field} from 'formik';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {saveProfileInfo} from "../../../redux/profile-reducer";
+import {Button} from "@material-ui/core";
+import {getContacts} from "../../../redux/selectors/profile-selectors";
+import {ContactsType} from "../../../types/commonTypes";
 
-export const ProfileDataForm = (props) => {
+type ValuesTypes = {
+    fullName: string,
+    aboutMe: string,
+    lookingForAJobDescription: string,
+    lookingForAJob: boolean
+}
+
+type PropsType = {
+    setEditMode: (args: boolean) => void
+}
+
+export const ProfileDataForm: FC<PropsType> = ({setEditMode}) => {
     const dispatch = useDispatch()
-
+    const contacts = useSelector(getContacts)
+    // @ts-ignore
     return (
         <div>
             <h1>Edit Personal Data</h1>
             <Formik
-                initialValues={{fullName: '', aboutMe: '', lookingForAJobDescription: '', lookingForAJob: ''}}
-                onSubmit={(values) => {
+                // @ts-ignore
+                initialValues={ {fullName: '', aboutMe: '', lookingForAJobDescription: '', lookingForAJob: ''   } }
+                onSubmit={(values: ValuesTypes) => {
+                    // @ts-ignore
                     dispatch(saveProfileInfo(values))
-                    props.setEditMode(false)
+                    setEditMode(false)
                 }}
+
             >
                 {() => (
                     <Form>
@@ -22,7 +40,10 @@ export const ProfileDataForm = (props) => {
                         <Field name="aboutMe" placeholder='about me'/>
                         <Field name="lookingForAJobDescription" placeholder="lookingForAJobDescription"/>
                         <Field type='checkbox' name="lookingForAJob" />
-                        <b>Contacts:</b> {Object.keys(props.profile.contacts).map( key => {
+
+                        <b>Contacts:</b>
+
+                        {Object.keys(contacts!).map( key => {
                                 return <div key={key}>
                                     {key}: <Field name={"contacts." + key} placeholder={key} />
                                 </div>
@@ -30,9 +51,9 @@ export const ProfileDataForm = (props) => {
                         <button type="submit" >
                             Save
                         </button>
-                        <button  type="submit" >
+                        <Button  type="submit" >
                             Discard
-                        </button>
+                        </Button>
                     </Form>
                 )}
             </Formik>

@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../redux/auth-reducer";
 import {getIsAuth, getLogin} from "../../redux/selectors/auth-selectors";
+import {Button} from "@material-ui/core";
 
 export const AuthLogic: FC = () => {
     let dispatch = useDispatch()
@@ -19,9 +20,11 @@ export const AuthLogic: FC = () => {
                             <span onClick={() => dispatch(logout())} className={styles.loginBtn}>Logout</span>
                         </NavLink>
                     </>
-                    : <NavLink to={'/login'} className={styles.login}>
-                        <img className={styles.loginIcon} src={loginIcon} alt='login'/>
-                        <span className={styles.loginBtn}>Login</span>
+                    : <NavLink to={'/login'} >
+                        <Button variant="contained" >
+                            <img className={styles.loginIcon} src={loginIcon} alt='login'/>
+                            <span className={styles.loginBtn}>Login</span>
+                        </Button>
                     </NavLink>
             }
         </>

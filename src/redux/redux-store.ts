@@ -20,6 +20,10 @@ type RootReducer = typeof rootReducer // (globalState: GLOBAlSTATE) => GLOBAlSTA
 export type AppStateType = ReturnType<RootReducer>
 
 
+type ActionValueType<T> = T extends {[key: string]: infer U}  ? U : never
+
+export type InferActionsType<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<ActionValueType<T>>
+
 //@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

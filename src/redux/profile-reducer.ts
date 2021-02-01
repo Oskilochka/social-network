@@ -1,5 +1,7 @@
-import {profileAPI} from "../api/api";
 import {PhotosType, PostType, ProfileType} from "../types/commonTypes";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./redux-store";
+import {profileAPI} from "../api/profile-api";
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -97,15 +99,18 @@ type SaveAvatarSuccessType = {
 type ActionsType = AddPostType | DeletePostType | SetUserProfileType | SetUserProfileStatusType | SaveAvatarSuccessType;
 
 
-export const getUserProfileThunk = (userId: number) => async (dispatch: any) => {
+//thunk
+type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionsType>
+
+export const getUserProfileThunk = (userId: number): ThunkType => async (dispatch) => {
     let response = await profileAPI.getUserProfile(userId)
     dispatch(setUserProfile(response.data))
 }
-export const getUserProfileStatus = (userId: number) => async (dispatch: any) => {
+export const getUserProfileStatus = (userId: number): ThunkType => async (dispatch) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(setUserProfileStatus(response.data))
 }
-export const updateUserProfileStatus = (status: string) => async (dispatch: any) => {
+export const updateUserProfileStatus = (status: string): ThunkType => async (dispatch) => {
     try {
         let response = await profileAPI.updateStatus(status)
         if (!response.data.resultCode) {
@@ -117,18 +122,18 @@ export const updateUserProfileStatus = (status: string) => async (dispatch: any)
         alert('some error')
     }
 }
-export const saveAvatar = (file: any) => async (dispatch: any) => {
+export const saveAvatar = (file: any): ThunkType => async (dispatch) => {
     let response = await profileAPI.setAvatar(file)
     if (!response.data.resultCode) {
         dispatch(saveAvatarSuccess(response.data.data.photos)
         )
     }
 }
-export const saveProfileInfo = (profile: ProfileType) => async (dispatch: any, getState: any) => {
+export const saveProfileInfo = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
     let userId = getState().auth.id
     let response = await profileAPI.saveProfile(profile)
     if (!response.data.resultCode) {
-        dispatch(getUserProfileThunk(userId))
+        dispatch(getUserProfileThunk(userId!))
     }
 }
 

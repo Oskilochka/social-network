@@ -35,3 +35,10 @@ export type UserType = {
     status: string | null
     followed: boolean
 }
+
+export type LoginFormDataType = {
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    captcha: string
+}
