@@ -17,11 +17,12 @@ export const AuthLogic: FC = () => {
                 isAuth ?
                     <> <h5> {login} </h5>
                         <NavLink to={'/login'}>
-                            <Button variant="contained" color='secondary' onClick={() => dispatch(logout())} >Logout</Button>
+                            <Button variant="contained" color='secondary'
+                                    onClick={() => dispatch(logout())}>Logout</Button>
                         </NavLink>
                     </>
-                    : <NavLink to={'/login'} >
-                            <Button variant="contained" >
+                    : <NavLink to={'/login'}>
+                        <Button variant="contained">
                             <img className={styles.loginIcon} src={loginIcon} alt='login'/>
                             <span className={styles.loginBtn}>Login</span>
                         </Button>

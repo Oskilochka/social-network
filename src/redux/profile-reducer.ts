@@ -15,7 +15,7 @@ let initialState = {
     status: ''
 }
 
-export const profileReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const profileReducer = (state: initialStateType, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case "ADD_POST": {
             let newPost = {

@@ -1,8 +1,8 @@
 import React, {FC} from 'react'
-import {Formik, Form, Field} from 'formik';
+import {Formik, Form} from 'formik';
 import {useDispatch, useSelector} from "react-redux";
 import {saveProfileInfo} from "../../../redux/profile-reducer";
-import {Button} from "@material-ui/core";
+import {Button, Checkbox, TextField} from "@material-ui/core";
 import {getContacts} from "../../../redux/selectors/profile-selectors";
 import {ContactsType} from "../../../types/commonTypes"
 
@@ -40,16 +40,16 @@ export const ProfileDataForm: FC<PropsType> = ({setEditMode}) => {
                 }}>
                 {() => (
                     <Form>
-                        <Field name="fullName" placeholder='Full Name'/>
-                        <Field name="aboutMe" placeholder='about me'/>
-                        <Field name="lookingForAJobDescription" placeholder="lookingForAJobDescription"/>
-                        <Field type='checkbox' name="lookingForAJob"/>
+                        <TextField name="fullName" placeholder='Full Name'/>
+                        <TextField name="aboutMe" placeholder='about me'/>
+                        <TextField name="lookingForAJobDescription" placeholder="lookingForAJobDescription"/>
+                        <Checkbox name="lookingForAJob"/>
 
                         <b>Contacts:</b>
 
                         {Object.keys(contacts!).map(key => {
                             return <div key={key}>
-                                {key}: <Field name={"contacts." + key} placeholder={key}/>
+                                {key}: <TextField name={"contacts." + key} placeholder={key}/>
                             </div>
                         })}
                         <Button variant="contained" type="submit" color='primary'>

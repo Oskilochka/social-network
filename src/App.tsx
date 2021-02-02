@@ -6,17 +6,24 @@ import Settings from "./components/Settings/Settings";
 import {connect} from "react-redux";
 import {initializeApp} from './redux/app-reducer';
 import {Preloader} from "./components/common/Preloader/Preloader";
-import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";
 import {Header} from "./components/Header/Header";
 import {compose} from "redux";
 import {NotFound} from "./components/404/NotFound";
 import Users from "./components/Users/Users";
+import {AppStateType} from "./redux/redux-store";
+import Profile from "./components/Profile/Profile";
 
 const Auth = React.lazy(() => import('./components/Auth/Auth'));
 
-class App extends React.Component {
+type MapStateToProps = ReturnType<typeof mapStateToProps>
+
+type DispatchToProps = {
+    initializeApp: () => void
+}
+
+class App extends React.Component<MapStateToProps & DispatchToProps> {
 
     componentDidMount() {
         this.props.initializeApp()
@@ -41,7 +48,7 @@ class App extends React.Component {
                             <Route path='/dialogs'
                                    render={() => <Dialogs/>}/>
                             <Route path='/profile/:userId?'
-                                   render={() => <Profile/>}/>
+                                   render={() => <Profile />}/>
                             <Route path='/users'
                                    render={() => <Users/>}/>
                             <Route path='/settings'
@@ -58,11 +65,11 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 
 export default compose(
     withRouter,
     connect(mapStateToProps, {initializeApp})
-)(App);
+)(App) as React.ElementType;

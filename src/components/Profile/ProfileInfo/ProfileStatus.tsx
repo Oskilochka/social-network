@@ -2,10 +2,11 @@ import React, {useEffect, useState, FC} from 'react'
 import { ChangeEvent } from 'react';
 import {useDispatch} from "react-redux";
 import {updateUserProfileStatus} from "../../../redux/profile-reducer";
+import {TextField} from "@material-ui/core";
 
 type ProfileStatusType = {
     status: string,
-    isOwner: boolean
+    isOwner?: boolean
 }
 
 export const ProfileStatus: FC<ProfileStatusType> = ({status, isOwner}) => {
@@ -37,7 +38,7 @@ export const ProfileStatus: FC<ProfileStatusType> = ({status, isOwner}) => {
             {editMode
                 ?
                 <div>
-                    <input autoFocus={true} onChange={onStatusChange} value={localStatus}
+                    <TextField autoFocus={true} onChange={onStatusChange} value={localStatus}
                            onBlur={toggleEditMode}/>
                 </div>
                 :

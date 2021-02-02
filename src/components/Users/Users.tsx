@@ -8,8 +8,11 @@ import {compose} from "redux";
 const Users: FC = () => {
     return (
         <div className={styles.wrap}>
-            <UsersPagination/>
+         {/*   <h2>Cosmonauts</h2>*/}
             <UsersList/>
+            <UsersPagination/>
+
+
         </div>
     )
 }
