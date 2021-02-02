@@ -41,7 +41,7 @@ Connect was deleted so this task is unnecessary
 6. Rewrite class components to func with using hooks:
         ProfileContainer.jsx,
         HeaderContainer.jsx,
-        AuthRedirect.jsx,
+        AuthRedirect.tsx,
         NotFound.tsx (conect),
         DialogsContainer.jsx,
         MyPostsContainer.jsx,

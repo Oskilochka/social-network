@@ -1,13 +1,14 @@
 import React, {FC} from 'react'
 import styles from './Dialog.module.css'
 import {DialogItem} from "./DialogItem/DialogsItem";
-import Message from "./Message/Message";
+import {Message} from "./Message/Message";
 import {useDispatch, useSelector} from "react-redux";
-import {sendMessageCreator} from "../../redux/dialogs-reducer";
 import {NewMessageFormRedux} from "./NewMessageForm";
 import {setDialogs, setMessages} from "../../redux/selectors/dialogs-selectors";
 import {compose} from "redux";
 import {withAuthRedirect} from "../HOC/AuthRedirect";
+import {actions} from "../../redux/dialogs-reducer";
+import {DialogsType, MessageType} from "../../types/commonTypes";
 
 const Dialogs: FC = () => {
     const dialogs = useSelector(setDialogs)
@@ -16,11 +17,11 @@ const Dialogs: FC = () => {
     const dispatch = useDispatch()
 
     const sendMessage = (newMessageBody: string) => {
-        dispatch(sendMessageCreator(newMessageBody))
+        dispatch(actions.sendMessageCreator(newMessageBody))
     }
 
-    const dialogsElements = dialogs.map((d: any) => <DialogItem name={d.name} id={d.id}/>);
-    const messageElements = messages.map((m: any) => <Message message={m.message} id={m.id}/>);
+    const dialogsElements = dialogs.map((d: DialogsType) => <DialogItem name={d.name} id={d.id}/>);
+    const messageElements = messages.map((m: MessageType) => <Message message={m.message} id={m.id}/>);
 
     let addNewMessage = (values: any) => {
         sendMessage(values.newMessageBody)

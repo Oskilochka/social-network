@@ -9,7 +9,6 @@ export const instance = axios.create({
     }
 })
 
-
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1,
@@ -21,6 +20,7 @@ export type GetItemsType = {
     totalCount: number
     error: string | null
 }
+
 export type ResponseDataType<D = {}, RC = ResultCodesEnum> = {
     data: D
     messages: Array<string>

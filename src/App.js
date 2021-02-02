@@ -9,13 +9,12 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";
-import Header from "./components/Header/Header";
+import {Header} from "./components/Header/Header";
 import {compose} from "redux";
 import {NotFound} from "./components/404/NotFound";
 import Users from "./components/Users/Users";
 
 const Auth = React.lazy(() => import('./components/Auth/Auth'));
-
 
 class App extends React.Component {
 
@@ -26,7 +25,7 @@ class App extends React.Component {
     render() {
         if (!this.props.initialized) {
             return <Preloader/>
-        } else
+        } else {
             return (
                 <div className='appWrap'>
                     <div className='header'>
@@ -36,7 +35,7 @@ class App extends React.Component {
                         <Navbar/>
                         <Switch>
                             <Route exact path="/">
-                                <Redirect to="/profile" />
+                                <Redirect to="/profile"/>
                             </Route>
 
                             <Route path='/dialogs'
@@ -50,12 +49,12 @@ class App extends React.Component {
                             <Route path='/login'
                                    render={withSuspense(Auth)}/>
                             <Route path='*'
-                                   render={() => <NotFound />}/>
+                                   render={() => <NotFound/>}/>
                         </Switch>
-
                     </div>
                 </div>
             );
+        }
     }
 }
 

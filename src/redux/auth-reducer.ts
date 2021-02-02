@@ -1,11 +1,8 @@
 import {ResultCodesEnum} from "../api/api";
 import {ThunkAction} from "redux-thunk";
-import {AppStateType} from "./redux-store";
+import {AppStateType, InferActionsType} from "./redux-store";
 import {authAPI} from "../api/auth-api";
 import {securityAPI} from "../api/security-api";
-
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_CAPTCHA = 'SET_CAPTCHA'
 
 type InitialStateType = typeof initialState
 
@@ -19,8 +16,8 @@ let initialState = {
 
 const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case SET_USER_DATA:
-        case SET_CAPTCHA:
+        case "SET_USER_DATA":
+        case "SET_CAPTCHA":
             return {
                 ...state,
                 ...action.payload
@@ -30,61 +27,45 @@ const authReducer = (state: InitialStateType = initialState, action: ActionsType
     }
 }
 
-type SetAuthUserDataType = {
-    type: typeof SET_USER_DATA,
-    payload: {
-        id: number | null,
-        email: string | null,
-        login: string | null,
-        isAuth: boolean
-    }
+
+//actions
+type ActionsType = InferActionsType<typeof actions>
+
+export const actions = {
+    setAuthUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean) => (
+        {type: "SET_USER_DATA", payload: {id, email, login, isAuth}}),
+    setCaptcha: (captcha: string) => ({type: "SET_CAPTCHA", payload: {captcha}})
 }
-
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataType => (
-    {type: SET_USER_DATA, payload: {id, email, login, isAuth}}
-);
-
-type setCaptchaType = {
-    type: typeof SET_CAPTCHA,
-    payload: {
-        captcha: string
-    }
-}
-export const setCaptcha = (captcha: string): setCaptchaType => ({type: SET_CAPTCHA, payload: {captcha}});
-
-type ActionsType = setCaptchaType | SetAuthUserDataType
 
 //thunk
 type ThunkType = ThunkAction<Promise<void>, AppStateType, any, ActionsType>
 export const getAuthUserData = (): ThunkType => async (dispatch) => {
     //async func return promise
-    const response = await authAPI.authMe()
-    if (response.data.resultCode === ResultCodesEnum.Success) {
-        const {id, email, login} = response.data.data;
-        dispatch(setAuthUserData(id, email, login, true))
+    const data = await authAPI.authMe()
+    if (data.resultCode === ResultCodesEnum.Success) {
+        const {id, email, login} = data.data;
+        dispatch(actions.setAuthUserData(id, email, login, true))
     }
 }
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
-    const response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.data.resultCode === ResultCodesEnum.Success) {
+    const data = await authAPI.login(email, password, rememberMe, captcha)
+    if (data.resultCode === ResultCodesEnum.Success) {
         await dispatch(getAuthUserData())
     } else {
-        if (response.data.resultCode === ResultCodesEnum.CaptchaIsRequired) {
+        if (data.resultCode === ResultCodesEnum.CaptchaIsRequired) {
             await dispatch(getCaptcha())
         }
-       /* const messageError = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"*/
-        /*dispatch(stopSubmit('login', {_error: messageError}))*/
     }
 }
 export const getCaptcha = (): ThunkType => async (dispatch) => {
-    const response = await securityAPI.getCaptcha()
-    const captcha = response.data.url
-    dispatch(setCaptcha(captcha))
+    const data = await securityAPI.getCaptcha()
+    const captcha = data.url
+    dispatch(actions.setCaptcha(captcha))
 }
 export const logout = (): ThunkType => async (dispatch) => {
-    const response = await authAPI.logout()
-    if (response.data.resultCode === ResultCodesEnum.Success) {
-        dispatch(setAuthUserData(null, null, null, false))
+    const data = await authAPI.logout()
+    if (data.resultCode === ResultCodesEnum.Success) {
+        dispatch(actions.setAuthUserData(null, null, null, false))
     }
 }
 

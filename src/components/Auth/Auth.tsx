@@ -1,25 +1,20 @@
 import React, {FC} from 'react'
 import styles from "./Auth.module.css";
-import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../redux/auth-reducer";
+import {useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {LoginReduxForm} from "./AuthForm";
 import {getIsAuth} from "../../redux/selectors/auth-selectors";
-import {LoginFormDataType} from "../../types/commonTypes";
+import {AuthFormik} from "./AuthFormik";
 
 const Auth: FC = () => {
     let isAuth = useSelector(getIsAuth)
-    let dispatch = useDispatch()
-    const onSubmit = (formData: LoginFormDataType) => {
-        dispatch(login(formData.email, formData.password, formData.rememberMe, formData.captcha))
-    }
+
     if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
     return (
         <div className={styles.wrap}>
             <h1> You need to Login </h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <AuthFormik />
         </div>
     );
 }

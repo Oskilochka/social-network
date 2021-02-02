@@ -1,10 +1,6 @@
 import React, {FC, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {
-    getCount,
-    getPage,
-    getTotalUserCount
-} from "../../redux/selectors/user-selectors";
+import {getCount, getPage, getTotalUserCount} from "../../redux/selectors/user-selectors";
 import {getUsersThunk} from "../../redux/users-reducer";
 import styles from "./Users.module.css";
 

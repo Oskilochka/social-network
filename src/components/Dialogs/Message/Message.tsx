@@ -6,7 +6,7 @@ type MessageType = {
     id: number
 }
 
-const Message: FC<MessageType> = ({message, id}) => {
+export const Message: FC<MessageType> = ({message, id}) => {
     return (
         <div className={styles.message}>
             {id} {message}
@@ -14,4 +14,3 @@ const Message: FC<MessageType> = ({message, id}) => {
     )
 }
 
-export default Message;

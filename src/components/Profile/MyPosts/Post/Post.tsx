@@ -8,6 +8,7 @@ type PostType = {
 }
 
 export const Post: FC<PostType> = ({message, likesCount}) => {
+
     return (
         <div className={styles.item}>
             <div>

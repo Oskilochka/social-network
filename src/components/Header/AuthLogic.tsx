@@ -8,20 +8,20 @@ import {getIsAuth, getLogin} from "../../redux/selectors/auth-selectors";
 import {Button} from "@material-ui/core";
 
 export const AuthLogic: FC = () => {
-    let dispatch = useDispatch()
     let isAuth = useSelector(getIsAuth)
     let login = useSelector(getLogin)
+    let dispatch = useDispatch()
 
     return (<>
             {
                 isAuth ?
                     <> <h5> {login} </h5>
-                        <NavLink to={'/login'} className={styles.login}>
-                            <span onClick={() => dispatch(logout())} className={styles.loginBtn}>Logout</span>
+                        <NavLink to={'/login'}>
+                            <Button variant="contained" color='secondary' onClick={() => dispatch(logout())} >Logout</Button>
                         </NavLink>
                     </>
                     : <NavLink to={'/login'} >
-                        <Button variant="contained" >
+                            <Button variant="contained" >
                             <img className={styles.loginIcon} src={loginIcon} alt='login'/>
                             <span className={styles.loginBtn}>Login</span>
                         </Button>

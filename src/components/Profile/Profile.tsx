@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {FC, useEffect} from 'react'
 import styles from "./Profile.module.css";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,7 +9,11 @@ import {withAuthRedirect} from "../HOC/AuthRedirect";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {getAuthUserId} from "../../redux/selectors/auth-selectors";
 
-const Profile = (props) => {
+type PropsType = {
+    match: any
+}
+
+const Profile: FC<PropsType> = (props) => {
     const authUserId = useSelector(getAuthUserId)
 
     const dispatch = useDispatch()

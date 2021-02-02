@@ -8,6 +8,9 @@ import {saveAvatar} from "../../../redux/profile-reducer";
 import {getStatus, getUserProfile} from "../../../redux/selectors/profile-selectors";
 import {ProfileData} from "./ProfileData";
 import {ProfileDataForm} from "./ProfileDataForm";
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import {Button} from "@material-ui/core";
 
 type ProfileInfoType = {
     isOwner: boolean
@@ -33,22 +36,32 @@ export const ProfileInfo: FC<ProfileInfoType> = ({isOwner}) => {
         <div>
             <div className={styles.info}>
                 <div>
-                    <img className={styles.img} src={userProfile.photos.large || userPhoto} alt='userProfile'/>
-                    {isOwner && <input type='file' onChange={onImageChange}/>}
+                    <img className={styles.img} src={userProfile.photos?.large || userPhoto} alt='userProfile'/>
+                    {isOwner && <div>
+                        <input onChange={onImageChange} className={styles.fileInput} accept="image/*"
+                               id="icon-button-file" type="file"/>
+                        <label onChange={onImageChange} htmlFor="icon-button-file">
+                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                <PhotoCamera/>
+                            </IconButton>
+                        </label>
+                    </div> }
                 </div>
-                <ProfileStatus isOwner={isOwner} status={status} />
+                <ProfileStatus isOwner={isOwner} status={status}/>
                 <div>
                     {editMode
                         // @ts-ignore
                         ? <ProfileDataForm profile={userProfile} setEditMode={setEditMode}/>
                         : <div><ProfileData/>
-                            {isOwner && <button onClick={() => {
+                            {isOwner &&
+                            <Button variant="contained" color="primary" onClick={() => {
                                 setEditMode(true)
-                            }}>Edit</button>}</div>
+                            }}>Edit</Button>
+                            }
+                        </div>
                     }
                 </div>
             </div>
         </div>
     )
 }
-

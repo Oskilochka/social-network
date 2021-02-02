@@ -4,54 +4,58 @@ import {useDispatch, useSelector} from "react-redux";
 import {saveProfileInfo} from "../../../redux/profile-reducer";
 import {Button} from "@material-ui/core";
 import {getContacts} from "../../../redux/selectors/profile-selectors";
-import {ContactsType} from "../../../types/commonTypes";
+import {ContactsType} from "../../../types/commonTypes"
 
 type ValuesTypes = {
     fullName: string,
     aboutMe: string,
     lookingForAJobDescription: string,
     lookingForAJob: boolean
+    contacts: ContactsType | undefined
 }
 
 type PropsType = {
-    setEditMode: (args: boolean) => void
+    setEditMode: (arg0: boolean) => void
+}
+
+const values = {
+    fullName: '',
+    aboutMe: '',
+    lookingForAJobDescription: '',
+    lookingForAJob: false,
+    contacts: undefined
 }
 
 export const ProfileDataForm: FC<PropsType> = ({setEditMode}) => {
     const dispatch = useDispatch()
     const contacts = useSelector(getContacts)
-    // @ts-ignore
     return (
         <div>
             <h1>Edit Personal Data</h1>
             <Formik
-                // @ts-ignore
-                initialValues={ {fullName: '', aboutMe: '', lookingForAJobDescription: '', lookingForAJob: ''   } }
+                initialValues={values}
                 onSubmit={(values: ValuesTypes) => {
-                    // @ts-ignore
                     dispatch(saveProfileInfo(values))
                     setEditMode(false)
-                }}
-
-            >
+                }}>
                 {() => (
                     <Form>
                         <Field name="fullName" placeholder='Full Name'/>
                         <Field name="aboutMe" placeholder='about me'/>
                         <Field name="lookingForAJobDescription" placeholder="lookingForAJobDescription"/>
-                        <Field type='checkbox' name="lookingForAJob" />
+                        <Field type='checkbox' name="lookingForAJob"/>
 
                         <b>Contacts:</b>
 
-                        {Object.keys(contacts!).map( key => {
-                                return <div key={key}>
-                                    {key}: <Field name={"contacts." + key} placeholder={key} />
-                                </div>
-                    })}
-                        <button type="submit" >
+                        {Object.keys(contacts!).map(key => {
+                            return <div key={key}>
+                                {key}: <Field name={"contacts." + key} placeholder={key}/>
+                            </div>
+                        })}
+                        <Button variant="contained" type="submit" color='primary'>
                             Save
-                        </button>
-                        <Button  type="submit" >
+                        </Button>
+                        <Button variant="contained" type="submit" color='primary'>
                             Discard
                         </Button>
                     </Form>

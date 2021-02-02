@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 import headerIcon from '../../assets/img/headerIcon.png'
 import {AuthLogic} from "./AuthLogic";
 
-const Header: FC = () => {
+export const Header: FC = () => {
     return (
         <div className={styles.wrap}>
             <div className={styles.header}>
@@ -17,4 +17,3 @@ const Header: FC = () => {
     );
 }
 
-export default Header;

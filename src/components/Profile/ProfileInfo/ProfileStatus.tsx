@@ -2,6 +2,7 @@ import React, {useEffect, useState, FC} from 'react'
 import { ChangeEvent } from 'react';
 import {useDispatch} from "react-redux";
 import {updateUserProfileStatus} from "../../../redux/profile-reducer";
+
 type ProfileStatusType = {
     status: string,
     isOwner: boolean
@@ -41,7 +42,7 @@ export const ProfileStatus: FC<ProfileStatusType> = ({status, isOwner}) => {
                 </div>
                 :
                 <div>
-                    <span onDoubleClick={toggleEditMode}> {status || 'no status'} </span>
+                    <span onDoubleClick={toggleEditMode}> {status || 'samurai'} </span>
                 </div>
             }
         </>
