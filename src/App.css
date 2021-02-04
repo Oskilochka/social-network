@@ -1,21 +1,22 @@
 * {
-  margin: 0px;
-  padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
+
 .appWrap {
-  background-color: lavender;
-  height: 100vh;
+    background-color: lavender;
+    height: 100vh;
 
 }
+
 .header {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
+
 .body {
-  display: grid;
-  padding-top: 50px;
-  margin: 0% 20%;
-  grid-template-columns: 2fr 10fr ;
+    display: grid;
+    padding-top: 50px;
+    margin: 0% 20%;
+    grid-template-columns: 2fr 10fr;
 }
-
-

@@ -1,6 +1,6 @@
 import {InferActionsType} from "./redux-store";
 
-type initialStateType = typeof initialState
+type InitialStateType = typeof initialState
 
 type MessageType = {
     id: number,
@@ -24,7 +24,7 @@ let initialState = {
     ] as Array<DialogType>,
 }
 
-const dialogsReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case "SEND_MESSAGE":
             let body = action.newMessageBody

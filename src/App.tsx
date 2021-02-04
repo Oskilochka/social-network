@@ -1,19 +1,20 @@
 import React from 'react'
-import "./App.css";
-import {Navbar} from "./components/Navbar/Navbar";
-import {Route, withRouter, Switch, Redirect} from "react-router-dom";
-import Settings from "./components/Settings/Settings";
-import {connect} from "react-redux";
-import {initializeApp} from './redux/app-reducer';
 import {Preloader} from "./components/common/Preloader/Preloader";
-import Dialogs from "./components/Dialogs/Dialogs";
-import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";
+import {Navbar} from "./components/Navbar/Navbar";
 import {Header} from "./components/Header/Header";
-import {compose} from "redux";
-import {NotFound} from "./components/404/NotFound";
-import Users from "./components/Users/Users";
-import {AppStateType} from "./redux/redux-store";
+import {Route, Switch} from "react-router";
+import {Redirect, withRouter} from "react-router-dom";
+import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
+import Users from "./components/Users/Users";
+import Settings from "./components/Settings/Settings";
+import {withSuspense} from "./components/HOC/LazyLoadingWithSuspense";
+import {NotFound} from "./components/404/NotFound";
+import {AppStateType} from "./redux/redux-store";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {initializeApp} from "./redux/app-reducer";
+import './App.css'
 
 const Auth = React.lazy(() => import('./components/Auth/Auth'));
 

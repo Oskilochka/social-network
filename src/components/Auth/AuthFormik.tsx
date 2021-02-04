@@ -22,7 +22,7 @@ export const AuthFormik: FC = () => {
         <div>
             <h1>Signup</h1>
             <Formik
-                initialValues = {{
+                initialValues={{
                     email: '',
                     password: '',
                     rememberMe: false,
@@ -48,7 +48,6 @@ export const AuthFormik: FC = () => {
                                 <Field name={'captcha'} className={styles.captcha}/>
                             </div>}
                         </div>
-
                         <Button type="submit" color="primary">Login</Button>
                     </Form>
                 )}

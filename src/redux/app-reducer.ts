@@ -7,7 +7,7 @@ let initialState = {
     initialized: false
 }
 
-const appReducer = (state = initialState, action: ActionsType): InitialStateType => {
+export const appReducer = (state: InitialStateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case "SET_INITIALIZED_SUCCESS":
             return {
@@ -26,12 +26,10 @@ export const actions = {
 }
 
 //ThunkCreator
-export const initializeApp = () =>  (dispatch: any) => {
+export const initializeApp = () => (dispatch: any) => {
     let promise = dispatch(getAuthUserData());
     Promise.all([promise]).then(() => {
         dispatch(actions.setInitializedSuccess());
-
     })
 }
 
-export default appReducer;
